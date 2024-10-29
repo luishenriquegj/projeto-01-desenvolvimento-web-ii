@@ -26,10 +26,21 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Optional<Product> product = productRepository.findById(id);
         return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Product> deleteProductById(@PathVariable("id") Long id) {
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+
+            return ResponseEntity.noContent().build(); // Returns 204 No Content if deletion is successful
+        } else {
+            return ResponseEntity.notFound().build(); // Returns 404 Not Found if the client does not exist
+        }
     }
 
 }

@@ -27,7 +27,7 @@ public class ClientController {
         return clientRepository.save(client);
     }
 
-    @DeleteMapping("/clients/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteClientById(@PathVariable Integer id) {
         println("exists");
         if (clientRepository.existsById(id.longValue())) {
