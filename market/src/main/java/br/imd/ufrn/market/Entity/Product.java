@@ -17,11 +17,11 @@ public class Product {
   @Column(nullable = false)
   private String productName;
   @Column(nullable = false)
-  private String marca;
+  private String brand;
   @Column(nullable = false)
-  private LocalDate dataFabricacao;
-  @Column(nullable = false)
-  private LocalDate dataValidade;
+  private LocalDate fabDate;
+  @Column(nullable = true)
+  private LocalDate expDate;
   @Column(nullable = false)
   private Section section;
   @Column(nullable = false)

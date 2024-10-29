@@ -15,8 +15,9 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
+
     @PostMapping
-    public Product helloPut(Product product) {
+    public Product createProduct(@RequestBody  Product product) {
         return productRepository.save(product);
     }
 
