@@ -1,7 +1,6 @@
 package br.imd.ufrn.market.controller;
 
 import br.imd.ufrn.market.Entity.Client;
-import br.imd.ufrn.market.Entity.Product;
 import br.imd.ufrn.market.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
