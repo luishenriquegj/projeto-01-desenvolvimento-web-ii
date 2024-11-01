@@ -39,9 +39,9 @@ public class ClientController {
      *         or 404 Not Found if the client does not exist.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productRepository.findById(id);
-        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Client> getProductById(@PathVariable Long id) {
+        Optional<Client> client = clientRepository.findById(id);
+        return client.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     /**
