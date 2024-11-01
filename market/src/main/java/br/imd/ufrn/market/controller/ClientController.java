@@ -1,12 +1,14 @@
 package br.imd.ufrn.market.controller;
 
 import br.imd.ufrn.market.Entity.Client;
+import br.imd.ufrn.market.Entity.Product;
 import br.imd.ufrn.market.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.sql.DriverManager.println;
 
@@ -26,6 +28,20 @@ public class ClientController {
     @GetMapping
     public List<Client> listClient(){
         return clientRepository.findAll();
+    }
+
+    /**
+     * Handles GET requests to "/clients/{id}".
+     * Retrieves and returns a client based on the provided product ID.
+     *
+     * @param id the ID of the product to be retrieved.
+     * @return a ResponseEntity containing the client object if found,
+     *         or 404 Not Found if the client does not exist.
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     /**
