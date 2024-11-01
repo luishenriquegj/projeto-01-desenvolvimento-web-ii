@@ -1,5 +1,6 @@
 package br.imd.ufrn.market.controller;
 
+import br.imd.ufrn.market.Entity.Client;
 import br.imd.ufrn.market.Entity.Product;
 import br.imd.ufrn.market.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,32 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
 
-        Product updatedProduct = productRepository.save(product);
 
-        return ResponseEntity.ok(updatedProduct);
+        Product existingProduct = productRepository.findById(product.getId()).orElse(product);
+
+        if (product.getProductName() != null && !product.getProductName().equals(existingProduct.getProductName())) {
+            existingProduct.setProductName(product.getProductName());
+        }
+        if (product.getBatch() != null && !product.getBatch().equals(existingProduct.getBatch())) {
+            existingProduct.setBatch(product.getBatch());
+        }
+        if (product.getFabDate() != null && !product.getFabDate().equals(existingProduct.getFabDate())) {
+            existingProduct.setFabDate(product.getFabDate());
+        }
+        if (product.getBrand() != null && !product.getBrand().equals(existingProduct.getBrand())) {
+            existingProduct.setBrand(product.getBrand());
+        }
+
+        if (product.getExpDate() != null && !product.getExpDate().equals(existingProduct.getExpDate())) {
+            existingProduct.setExpDate(product.getExpDate());
+        }
+
+        if (product.getSection() != null && !product.getSection().equals(existingProduct.getSection())) {
+            existingProduct.setSection(product.getSection());
+        }
+
+        productRepository.save(existingProduct);
+        return ResponseEntity.ok(existingProduct);
     }
     /**
      * Handles GET requests to "/products".
@@ -69,8 +93,8 @@ public class ProductController {
      *         or 404 Not Found if the product does not exist.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productRepository.findById(id);
+    public ResponseEntity<Product> getProductById(@PathVariable Integer id) {
+        Optional<Product> product = productRepository.findById(id.longValue());
         return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

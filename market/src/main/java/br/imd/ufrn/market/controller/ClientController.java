@@ -77,12 +77,30 @@ public class ClientController {
             return ResponseEntity.notFound().build();
         }
 
-        // Update the client in the repository
-        Client updatedClient = clientRepository.save(client);
+        Client existingClient = clientRepository.findById(client.getId()).orElse(client);
+
+        // Update only the fields that have changed
+        if (client.getName() != null && !client.getName().equals(existingClient.getName())) {
+            existingClient.setName(client.getName());
+        }
+        if (client.getCpf() != null && !client.getCpf().equals(existingClient.getCpf())) {
+            existingClient.setCpf(client.getCpf());
+        }
+        if (client.getDateOfBirth() != null && !client.getDateOfBirth().equals(existingClient.getDateOfBirth())) {
+            existingClient.setDateOfBirth(client.getDateOfBirth());
+        }
+        if (client.getGender() != null && !client.getGender().equals(existingClient.getGender())) {
+            existingClient.setGender(client.getGender());
+        }
+
+        // Save the updated client in the repository
+        Client updatedClient = clientRepository.save(existingClient);
 
         // Return the updated client with a 200 OK status
         return ResponseEntity.ok(updatedClient);
     }
+
+
 
 
 
