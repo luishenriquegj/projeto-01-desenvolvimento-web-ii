@@ -1,0 +1,386 @@
+{
+	"info": {
+		"_postman_id": "38d9727f-c8a6-4139-80a4-07f28f60a699",
+		"name": "projeto web ii",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39372850"
+	},
+	"item": [
+		{
+			"name": "client",
+			"item": [
+				{
+					"name": "createClient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateClient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllClients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getClientById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/clients",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteClient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/clients/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clients",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "createProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"test product 1\",\r\n    \"brand\":\"test brand 1\",\r\n    \"section\":\"CLEANING_PRODUCT\",\r\n    \"fabDate\":\"2024-12-21\",\r\n    \"batch\":3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductOrder",
+			"item": [
+				{
+					"name": "createProductOrder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"ORD002\",\r\n    \"active\": true,\r\n    \"products\": [\r\n        {\r\n            \"id\": 5,\r\n            \"productName\": \"test product\",\r\n            \"brand\": \"MARCA\",\r\n            \"fabDate\": \"2020-02-11\",\r\n            \"expDate\": \"2020-01-01\",\r\n            \"section\": \"PERSONAL_HYGIENE\",\r\n            \"batch\": \"129837192379164\"\r\n        }\r\n    ],\r\n    \"client\":{\r\n        \"id\": 10,\r\n        \"name\": \"test test \",\r\n        \"cpf\": \"224.693.123-54\",\r\n        \"dateOfBirth\": \"2002-12-19\",\r\n        \"gender\": \"OTHER\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/productOrder",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 6,\r\n    \"productName\": \"test product 1\",\r\n    \"brand\": \"MARCA\",\r\n    \"fabDate\": \"2020-02-11\",\r\n    \"expDate\": \"2020-01-01\",\r\n    \"section\": \"PERSONAL_HYGIENE\",\r\n    \"batch\": \"129837192322379164\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/productOrder/{id}/addProduct",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productOrder",
+								"{id}",
+								"addProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 6,\r\n        \"productName\": \"test product 1\",\r\n        \"brand\": \"MARCA\",\r\n        \"fabDate\": \"2020-02-11\",\r\n        \"expDate\": \"2020-01-01\",\r\n        \"section\": \"PERSONAL_HYGIENE\",\r\n        \"batch\": \"129837192322379164\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/productOrder/{id}/removeProduct",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productOrder",
+								"{id}",
+								"removeProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductOrder",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":7,\r\n    \"code\": \"ORD002\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/productOrder",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllproductOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/productOrder",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductOrderById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/productOrder",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productOrder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProductOrderByID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/productOrder/delete/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productOrder",
+								"delete",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "productOrderDeleteLogic",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/productOrder/deleteLogic/{id}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productOrder",
+								"deleteLogic",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
