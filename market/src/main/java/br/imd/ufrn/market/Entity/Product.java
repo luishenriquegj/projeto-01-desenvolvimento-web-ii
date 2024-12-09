@@ -5,6 +5,7 @@ import br.imd.ufrn.market.constants.Section;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
 import java.time.LocalDate;
 
 @Data
