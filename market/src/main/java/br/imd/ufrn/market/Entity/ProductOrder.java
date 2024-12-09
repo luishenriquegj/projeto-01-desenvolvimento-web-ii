@@ -17,7 +17,7 @@ public class ProductOrder {
     private String code;
 
     @Column(nullable = false)
-    private boolean ativo;
+    private boolean active;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -44,6 +44,6 @@ public class ProductOrder {
         this.code = code;
         this.products = products;
         this.client = client;
-        this.ativo = true;
+        this.active = true;
     }
 }

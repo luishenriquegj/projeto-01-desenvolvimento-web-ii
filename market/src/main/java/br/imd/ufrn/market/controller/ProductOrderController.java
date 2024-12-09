@@ -29,19 +29,19 @@ public class ProductOrderController {
     }
 
     @PostMapping
-    public ProductOrder postPedido(@RequestBody ProductOrder productOrder) {
-        return productOrderService.postPedido(productOrder);
+    public ProductOrder postProductOrder(@RequestBody ProductOrder productOrder) {
+        return productOrderService.postProductOrder(productOrder);
     }
 
     @PutMapping
-    public ResponseEntity<ProductOrder> putPedido(@RequestBody ProductOrder productOrder) {
-        Optional<ProductOrder> updatedProductOrder = productOrderService.putPedido(productOrder);
+    public ResponseEntity<ProductOrder> putProductOrder(@RequestBody ProductOrder productOrder) {
+        Optional<ProductOrder> updatedProductOrder = productOrderService.putProductOrder(productOrder);
         return updatedProductOrder.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deletePedido(@PathVariable Long id) {
-        if (productOrderService.deletePedido(id)) {
+    public ResponseEntity<Void> deleteProductOrder(@PathVariable Long id) {
+        if (productOrderService.deleteProductOrder(id)) {
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
@@ -59,14 +59,14 @@ public class ProductOrderController {
     }
 
     @PostMapping("/{orderId}/addProduct")
-    public ResponseEntity<ProductOrder> adicionarProduto(@PathVariable Long orderId, @RequestBody Product product) {
-        Optional<ProductOrder> updatedProductOrder = productOrderService.adicionarProduto(orderId, product);
+    public ResponseEntity<ProductOrder> addProduct(@PathVariable Long orderId, @RequestBody Product product) {
+        Optional<ProductOrder> updatedProductOrder = productOrderService.addProduct(orderId, product);
         return updatedProductOrder.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/{orderId}/removeProduct")
-    public ResponseEntity<ProductOrder> removerProduto(@PathVariable Long orderId, @RequestBody Product product) {
-        Optional<ProductOrder> updatedProductOrder = productOrderService.removerProduto(orderId, product);
+    public ResponseEntity<ProductOrder> removeProduct(@PathVariable Long orderId, @RequestBody Product product) {
+        Optional<ProductOrder> updatedProductOrder = productOrderService.removeProduct(orderId, product);
         return updatedProductOrder.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

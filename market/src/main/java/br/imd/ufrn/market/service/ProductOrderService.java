@@ -25,12 +25,12 @@ public class ProductOrderService {
     }
 
     @Transactional
-    public ProductOrder postPedido(ProductOrder productOrder) {
+    public ProductOrder postProductOrder(ProductOrder productOrder) {
         return productOrderRepository.save(productOrder);
     }
 
     @Transactional
-    public Optional<ProductOrder> putPedido(ProductOrder productOrder) {
+    public Optional<ProductOrder> putProductOrder(ProductOrder productOrder) {
         if (productOrder.getId() == null || !productOrderRepository.existsById(productOrder.getId())) {
             return Optional.empty();
         }
@@ -43,8 +43,8 @@ public class ProductOrderService {
         if (productOrder.getProducts() != null) {
             existingProductOrder.setProducts(productOrder.getProducts());
         }
-        if (!productOrder.isAtivo()) {
-            existingProductOrder.setAtivo(true);
+        if (!productOrder.isActive()) {
+            existingProductOrder.setActive(true);
         }
         if (productOrder.getClient() != null) {
             existingProductOrder.setClient(productOrder.getClient());
@@ -54,7 +54,7 @@ public class ProductOrderService {
     }
 
     @Transactional
-    public boolean deletePedido(Long id) {
+    public boolean deleteProductOrder(Long id) {
         if (productOrderRepository.existsById(id)) {
             productOrderRepository.deleteById(id);
             return true;
@@ -67,7 +67,7 @@ public class ProductOrderService {
         Optional<ProductOrder> productOrder = productOrderRepository.findById(id);
         if (productOrder.isPresent()) {
             ProductOrder order = productOrder.get();
-            order.setAtivo(false);
+            order.setActive(false);
             productOrderRepository.save(order);
             return true;
         }
@@ -75,7 +75,7 @@ public class ProductOrderService {
     }
 
     @Transactional
-    public Optional<ProductOrder> adicionarProduto(Long orderId, Product product) {
+    public Optional<ProductOrder> addProduct(Long orderId, Product product) {
         Optional<ProductOrder> productOrder = productOrderRepository.findById(orderId);
         if (productOrder.isPresent()) {
             ProductOrder order = productOrder.get();
@@ -86,7 +86,7 @@ public class ProductOrderService {
     }
 
     @Transactional
-    public Optional<ProductOrder> removerProduto(Long orderId, Product product) {
+    public Optional<ProductOrder> removeProduct(Long orderId, Product product) {
         Optional<ProductOrder> productOrder = productOrderRepository.findById(orderId);
         if (productOrder.isPresent()) {
             ProductOrder order = productOrder.get();
