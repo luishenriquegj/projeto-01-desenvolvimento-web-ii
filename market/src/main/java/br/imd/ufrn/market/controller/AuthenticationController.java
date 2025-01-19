@@ -1,15 +1,16 @@
 package br.imd.ufrn.market.controller;
 
 import br.imd.ufrn.market.DTO.AuthenticationDTO;
+import br.imd.ufrn.market.DTO.LoginResponseDTO;
 import br.imd.ufrn.market.DTO.RegisterDTO;
 import br.imd.ufrn.market.Entity.Client;
 import br.imd.ufrn.market.repository.ClientRepository;
+import br.imd.ufrn.market.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     @Autowired
     private final AuthenticationManager authenticationManager;
+    @Autowired
     private final ClientRepository clientRepository;
+    @Autowired
+    private TokenService tokenService;
 
     @Autowired
     public AuthenticationController(AuthenticationManager authenticationManager, ClientRepository clientRepository) {
@@ -30,9 +34,10 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@RequestBody @Valid AuthenticationDTO data) {
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO data) {
         var auth = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.email(), data.password()));
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((Client) auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
